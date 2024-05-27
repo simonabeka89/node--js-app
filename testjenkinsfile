@@ -1,10 +1,10 @@
 pipeline {
-    agent { label 'docker' }
+    agent any
 
     stages {
         stage('Dep install') {
             agent {
-                docker {
+                dockerContainer {
                     image 'node:9.8.0'
                 }
             }
