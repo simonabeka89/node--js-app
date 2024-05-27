@@ -1,18 +1,14 @@
 pipeline {
-    agent any
+    agent { label 'docker' }
 
     stages {
         stage('Dep install') {
             agent {
-                dockerContainer {
+                docker {
                     image 'node:9.8.0'
                 }
             }
             steps {
-                //sh 'cat /etc/os-release'
-                //sh 'apt update'
-                //sh 'apt install sudo -y'
-                //sh 'sudo chown -R 995:993 "/ .npm"'
                 sh 'npm install'
             }
         }
