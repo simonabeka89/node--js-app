@@ -9,6 +9,9 @@ pipeline {
                 }
             }
             steps {
+                sh 'apt update'
+                sh 'apt install sudo -y'
+                sh 'sudo chown -R 995:993 "/ .npm"'
                 sh 'npm install'
             }
         }
