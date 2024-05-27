@@ -5,14 +5,14 @@ pipeline {
         stage('Dep install') {
             agent {
                 dockerContainer {
-                    image 'node:14'
+                    image 'node:9.8.0'
                 }
             }
             steps {
-                sh 'cat /etc/os-release'
-                sh 'apt update'
-                sh 'apt install sudo -y'
-                sh 'sudo chown -R 995:993 "/ .npm"'
+                //sh 'cat /etc/os-release'
+                //sh 'apt update'
+                //sh 'apt install sudo -y'
+                //sh 'sudo chown -R 995:993 "/ .npm"'
                 sh 'npm install'
             }
         }
