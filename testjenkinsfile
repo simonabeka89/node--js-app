@@ -14,19 +14,18 @@ pipeline {
         }
         stage('package') {
             steps {
-                sh 'rm -rf *.tgz' || echo ""'
+                sh 'rm -rf *.tgz || echo ""'
                 sh 'npm pack'
             }
         }
         stage('upload artifact') {
             steps {
-                // Replace this with the actual command to upload the artifact
-                sh 'curl -uadmin:AP8gcgmmset5jeYChTJYDN6XmDd -T\
-                 *tgz\
-                 "http://ec2-54-175-253-25.compute-1.amazonaws.com:8081/artifactory/utc-nodejs/utc-app-${BUILD_ID}.tgz"'
+                sh '''
+                curl -uadmin:AP8gcgmmset5jeYChTJYDN6XmDd -T \
+                *tgz \
+                "http://ec2-54-175-253-25.compute-1.amazonaws.com:8081/artifactory/utc-nodejs/utc-app-${BUILD_ID}.tgz"
+                '''
             }
         }
     }
 }
-
-
