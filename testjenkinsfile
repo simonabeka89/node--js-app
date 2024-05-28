@@ -1,22 +1,31 @@
 pipeline {
-      agent {
-                docker {
-                    image 'node:14'
-                    args '-u root:root'
-                }
-            }
+    agent {
+        docker {
+            image 'node:14'
+            args '-u root:root'
+        }
+    }
 
     stages {
         stage('Dep install') {
-          steps {
+            steps {
                 sh 'npm install'
             }
         }
-        stage('package'){
-            steps{
+        stage('package') {
+            steps {
                 sh 'npm pack'
-
+            }
+        }
+        stage('upload artifact') {
+            steps {
+                // Replace this with the actual command to upload the artifact
+                sh 'curl -uadmin:AP8gcgmmset5jeYChTJYDN6XmDd -T\
+                 *tgz\
+                 "http://ec2-54-175-253-25.compute-1.amazonaws.com:8081/artifactory/utc-nodejs/utc-app-${BUILD_ID}.tgz"'
             }
         }
     }
+}
+
 }
