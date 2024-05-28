@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Dep install') {
             agent {
-                dockerContainer {
+                docker {
                     image 'node:9.8.0'
                 }
             }
